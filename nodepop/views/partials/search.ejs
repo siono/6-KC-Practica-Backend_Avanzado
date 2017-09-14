@@ -1,7 +1,7 @@
 
             <div class="input-group" id="boot-search-box">
  
-                <input type="text" class="form-control" placeholder="Busca el producto que necesitas" />
+                <input type="text" class="form-control" name="nombre" placeholder="Busca el producto que necesitas" />
  
                 <div class="input-group-btn">
  
@@ -13,17 +13,17 @@
  
                             <div class="dropdown-menu dropdown-menu-right" role="menu">
  
-                                <form class="form-horizontal" role="form" id="search">
+                                <div class="form-horizontal" role="form" id="search">
  
                                   <div class="form-group">
  
-                                    <label for="filter">Categoría:</label>
+                                    <label>Categoría:</label>
  
-                                    <select class="form-control">
+                                    <select name="tag" class="form-control">
 
                                         <option value="motor" selected>Motor</option>
  
-                                        <option value="electronica" selected>Electrónica</option>
+                                        <option value="electronica" >Electrónica</option>
  
                                         <option value="deporte">Deporte</option>
  
@@ -40,34 +40,43 @@
                                     <div class="form-check form-check-inline">
  
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="venta" id="venta" value="true"> Venta
+                                            <input class="form-check-input" type="radio" name="venta" value="true"> Venta
                                           </label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
                                           <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="venta" id="busqueda" value="false"> Busqueda
+                                            <input class="form-check-input" type="radio" name="venta" value="false"> Busqueda
                                           </label>
                                         </div>
 
                                   </div>
  
                              
-                                    <div class="form-group">
-                                    <label for="price">Precio:</label>
+                                  <div class="form-group">
+                                    
+                                    <label>Precio:</label>
+                                    
+                                    <select name="precio" class="form-control">
+                                   
+                                         <option value="10-50​" selected>10-50 €</option>
+                                    
+                                         <option value="10-" >Mayor 10 €</option>
 
-                                    <div class="form-row ">
-                                        <input type="text" class="form-control left" placeholder="Min.">
-                                  
-                                        <input type="text" class="form-control right" placeholder="Max.">
+                                         <option value="-50" >Menor 50 €</option>
+
+                                         <option value="50" >50 €</option>
+                                    
+                                    
+                                    </select>
                                     
                                     </div>
-                                </div>
+                                
  
 
                                   <button type="submit" class="btn btn-primary btn-block">Buscar</button>
  
-                                </form>
+                                </div>
 
  
                         </div>

@@ -1,7 +1,21 @@
 <div class="container">
-    <div class="page-header">
-        <h1><%= title %></h1>
-    </div>
-    <p class="lead">Welcome to <%= title %></p>
     
-</div>
+        <h1 class="page-header"> <%= title %> : Últimos anuncios</h1>
+        <section class="item-list clearfix">
+            
+            <!-- Cargamos aqui los articulos mediante js -->
+            <% for (let i=0; i<10; i++) { %>
+                <% include item %>
+            <% } %>        
+    
+            <div class="text-center">
+                <ul class="pagination">
+                    <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li><a href="?p=1" data-original-title="" title="">1</a></li>
+                    <li><a href="?p=2" data-original-title="" title="">2</a></li>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul>
+            </div>
+    
+        </section>
+    </div>
