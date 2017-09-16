@@ -15,12 +15,8 @@ article {
 .item {
     border: 1px solid lightgrey;
     padding-left: 0px !important;
-    height: 550px;
+    height: 440px;
     position: relative;
-}
-
-.item-info {
-    height: 532px;
 }
 
 .thumb {
@@ -30,7 +26,7 @@ article {
 
 .text-info {
     padding: 0px 15px 0px 15px;
-    height: 265px;
+    height: 120px;
 }
 
 .text-info a {
@@ -69,6 +65,7 @@ article {
     float: right;
     text-align: center;
     border-radius: 10%;
+    margin: 11px 0;
 }
 
 .description p {
@@ -79,8 +76,15 @@ article {
     display: block;
     text-align: center;
     font-size: 25px;
+    margin-top: 20px;
 }
 
 .tag > span{
     margin-right: 10px;
+}
+
+.tag {
+    display: block;
+    position: absolute;
+    bottom: 15px;
 }
