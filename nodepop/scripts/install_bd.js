@@ -2,7 +2,6 @@
 
 let async = require('async');
 
-
 //Conexión Mongo
 require('../lib/connectMongoose');
 let mongoose = require('mongoose');

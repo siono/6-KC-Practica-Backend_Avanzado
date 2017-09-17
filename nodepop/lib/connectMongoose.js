@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 const mongoose = require('mongoose');
-
+const bbdd = require('../config/configBD').BBDD;
 const conn = mongoose.connection;
 
 conn.on('error', err => {
@@ -11,11 +11,7 @@ conn.on('error', err => {
 
 conn.once('open', () => {
     console.log('Conectado a MongoDB');
-})
+});
 
-//la cadena de conexión es como una URL pero con protocolo mongodb
-mongoose.connect('mongodb://localhost/nodepop');
-
-//no necesitamos exportar la connexión ya que mongoose
-//se encarga de mantenerla internamente
+mongoose.connect(bbdd);
 
