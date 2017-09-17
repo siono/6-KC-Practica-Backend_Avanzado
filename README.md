@@ -25,7 +25,7 @@
 
 A continuación detallamos las operaciones que están disponibles en la API.
 
-#### Litar Tags de los Anuncios
+#### Listar Tags 
 
 * [Objetivo] - Lista de tags existentes
 * [Metodo] - GET
@@ -36,11 +36,59 @@ A continuación detallamos las operaciones que están disponibles en la API.
 {
 "sucess": true,
 "result": [
-"work",
-"lifestyle",
-"motor",
-"mobile"
-]
+	"work",
+	"lifestyle",
+	"motor",
+	"mobile"
+	]
 }
+```
+#### Listar Anuncios con filtros y paginados.
 
+* [Objetivo] - Lista de anuncios paginada. Con filtros por tag, tipo de anuncio (venta o búsqueda),
+rango de precio (precio min. y precio max.) y nombre de artículo (que empiece por el
+dato buscado).
+* [Metodo] - GET
+* [URL_base] - http://localhost:3000/apiv1/anuncios/
+* [Filtros disponibles]
+	* nombre: Nombre de artículo, que empiece por el dato buscado en el parámetro nombre.
+	* precio: Rango de precio (precio min. y precio max.) separado por - .
+	* tag: Tag del articulo
+	* venta: tipo de anuncio (venta o búsqueda).
+* [Paginación]
+	* skip
+	* limit
+
+* [URL_ejemplo - http://localhost:3000/apiv1/anuncios?precio=50-&tag=mobile&venta=true&skip=1&limit=2
+
+* [Salida]:
+```sh
+{
+    "success": true,
+    "rows": [
+        {
+            "_id": "59be5438ab64180be87744aa",
+            "nombre": "Coche",
+            "venta": true,
+            "precio": 400,
+            "foto": "coche.jpg",
+            "__v": 0,
+            "tags": [
+                "mobile"
+            ]
+        },
+        {
+            "_id": "59be55cfab64180be87744ac",
+            "nombre": "Avion",
+            "venta": true,
+            "precio": 5000,
+            "foto": "avion.jpg",
+            "__v": 0,
+            "tags": [
+                "mobile",
+                "lifestyle"
+            ]
+        }
+    ]
+}
 ```
