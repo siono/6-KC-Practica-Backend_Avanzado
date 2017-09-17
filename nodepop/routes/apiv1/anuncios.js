@@ -5,67 +5,74 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 const Anuncio = mongoose.model('Anuncio');
+const listarTags = require('../../models/Tag');
 
-
-
-
-router.get('/', (req,res,next) =>{
-    //recupera una lista de anuncios
-    Anuncio.find({}, (err,lista) =>{
-        if (err){
-            next(err);
-            return;
-        }
-        res.json({ success: true, rows: lista});
-    });
-});
-
-/*
 
 // GET /
-/*router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
 
-    const name = req.query.name;
-    const age = req.query.age;
+    const tags = req.query.tag;
+    const venta = req.query.venta;
+    const precio = req.query.precio;
+    const nombre = req.query.nombre;
+
     const skip = parseInt(req.query.skip);
     const limit = parseInt(req.query.limit);
 
-    const filter = {};
+    const filters = {};
 
-    if (name){
-        filter.name = name;
+    console.log(filters);
+
+    if (tags){
+        filters.tags = tags;
     }
 
-    if (age){
-        filter.age = age;
+    if (venta){
+        filters.venta = venta;
     }
+
+    if (precio){
+        
+        let rango = precio.split('-');
+       
+        if (rango.length === 1){
+            filters.precio = rango[0];
+        }
+        else if (rango.length === 2){
+            // - precio
+            if (rango[0]===''){
+                filters.precio = {'$lte':rango[1]};
+            }
+            // precio -
+            else if (rango[1]===''){
+                filters.precio = {'$gte':rango[0]};
+            }
+            // limiteInf - limiteSup
+            else {
+                filters.precio = {'$gte':rango[0],'$lte':rango[1]};
+            }
+            
+        }
+        
+    }
+
+    if (nombre){
+        filters.nombre = new RegExp('^'+ req.query.nombre, 'i');
+    }
+
 
   // recuperar una lista de Anuncios
-  Anuncio.lista(filter, skip, limit).then( lista => {
+  Anuncio.lista(filters, skip, limit).then( lista => {
     res.json({ success: true, rows: lista });
   }).catch( err => {
     console.log('Error', err);
     next(err); // para que retorne la página de error
     return;
   });
+
+
 });
-       
-    
 
-//GET /:id
-// Recupera solo un registro
-router.get('/:id',(req , res, next) => {
-    const _id = req.params.id;
-    Anuncio.findOne({ _id: _id }, (err, anuncio) =>{
-        if (err){
-            consele.log('Error', err);
-            next(err); //para que retorne la página de erro
-            return;
-        }
-        res.json({ sucess: true, rows: anuncio});
-    })
-
-})
 
 // POST
 // Crear un anuncio
@@ -77,46 +84,26 @@ router.post('/',(req, res, next) => {
     //lo guardamos en la base de datos
     anuncio.save((err,anuncioGuardado) => {
         if (err){
-            consele.log('Error', err);
-            next(err); //para que retorne la página de erro
+            console.log('Error', err);
+            next(err); //para que retorne la página de error
             return;
         } 
-        res.json({sucess: true, result: anuncioGuardado})
+        res.json({sucess: true, result: anuncioGuardado});
     });
 });
 
-
-//PUT
-//Actualizar un anuncio
-
-router.put('/:clavedelanuncio', (req,res,next)=>{
-    const _id = req.params.clavedelanuncio;
-    // ponemos {new: true} para que retorne el anuncio Actualizado y no el anuncio antes de la actualización.
-    Anuncio.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, anuncioActualizado)=>{
+router.get('/tags', (req, res, next) => {
+    listarTags(function(err, tags){
         if (err){
-            consele.log('Error', err);
-            next(err); //para que retorne la página de erro
+            console.log('Error', err);
+            next(err); //para que retorne la página de error
             return;
-        }   
-        res.json({sucess: true, result: anuncioActualizado})
-    })
+        } 
+        res.json({sucess: true, result: tags});
+    }
     
+);
 });
 
-//DELETE
-
-router.delete('/:id', (req,res,next) =>{
-    const _id = req.params.id;
-    Anuncio.remove({ _id: _id}, (err) =>{
-        if (err){
-            consele.log('Error', err);
-            next(err); //para que retorne la página de erro
-            return;
-        }
-    })
-});
-
-
-*/
 
 module.exports = router;
