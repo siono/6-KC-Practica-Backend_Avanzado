@@ -102,7 +102,7 @@ router.get('/tags', (req, res, next) => {
     if (!lang) lang = 'en';
     
     listarTags(function(err, tags){
-        if (!err){
+        if (err){
             return res.json({success:false, error: translateError('ERROR_FETCH',lang)});
         } 
         res.json({sucess: true, result: tags});
