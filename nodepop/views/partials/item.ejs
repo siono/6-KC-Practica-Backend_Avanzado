@@ -1,25 +1,35 @@
-<article class="col-sm-6 col-md-6 col-lg-4" data-id="1">
-    <div class="item">
+<% for (let key in anuncios){ %>
 
-        <div class="item-info break_word" id="box">
+<% var tipoAnuncio = (anuncios[key].venta) ? "venta" : "busqueda"; %>
+
+
+<article class="col-sm-6 col-md-6 col-lg-4" data-id="1">
+    <div class="item <%= tipoAnuncio %>">
+
+        <div class="item-info break_word">
                 
             <picture>
-                <img class="thumb" src="images/articles/art-1.jpg" >
+                <img class="thumb" src="images/articles/<%=anuncios[key].foto%>" >
             </picture>
             <div class="text-info">
-                <div class="typeArticle">Venta</div>
+                <a href="/apiv1/anuncios?venta=<%= anuncios[key].venta %>">
+                <div class="typeArticle">
+                    <%= tipoAnuncio.toUpperCase() %>
+                </div>
+                </a>
                 <a href="/#">
-                    <h1>Apple Watch</h1>
-                    <div class="price">100€</div>
+                    <h1><%= anuncios[key].nombre %></h1>
+                    <div class="price"><%= anuncios[key].precio %>€</div>
                 </a>
                     <div class="tag">
                         <span class="glyphicon glyphicon-tags"></span>
-                        <a href="/apiv1/anuncios?tag=work"> work </a>,
-                        <a href="/apiv1/anuncios?tag=lifestyle"> lifestyle </a>,
-                        <a href="/apiv1/anuncios?tag=motor"> motor </a>,
-                        <a href="/apiv1/anuncios?tag=mobile"> mobile </a>
+                        <% for (let key2 in anuncios[key].tags){ %>
+                        <a href="/apiv1/anuncios?tag=<%= anuncios[key].tags[key2] %>"> <%= anuncios[key].tags[key2] %> </a>
+                        <%}%>
                     </div>
             </div>
         </div> 
     </div>
 </article>
+
+<% } %>

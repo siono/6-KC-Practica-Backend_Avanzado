@@ -29,7 +29,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
 
 // catch 404 and forward to error handler

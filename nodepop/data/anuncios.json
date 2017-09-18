@@ -14,7 +14,7 @@
             "nombre": "iPhone 3GS",
             "venta": false,
             "precio": 50.00,
-            "foto": "iphone.png",
+            "foto": "iphone.jpg",
             "tags": [
                 "lifestyle",
                 "mobile"
@@ -27,6 +27,35 @@
             "foto": "watch.jpg",
             "tags": [
                 "mobile"
+            ]
+        },
+        {
+            "nombre" : "Coche",
+            "venta" : true,
+            "precio" : 400,
+            "foto" : "coche.jpg",
+            "tags" : [ 
+                "mobile"
+            ]
+            
+        },
+        {
+            "nombre" : "Moto",
+            "venta" : true,
+            "precio" : 500,
+            "foto" : "moto.jpg",
+            "tags" : [ 
+                "mobile , lifestyle"
+            ]
+        },
+        {
+            "nombre" : "Avion",
+            "venta" : true,
+            "precio" : 5000,
+            "foto" : "avion.jpg",
+            "tags" : [ 
+                "mobile", 
+                "lifestyle"
             ]
         }
     ]

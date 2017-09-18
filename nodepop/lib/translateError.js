@@ -5,7 +5,9 @@ const errorMessages = require('../data/messageError.json');
 let translateError = function (error, lang) {
 
     const langsAccepted = require('../config/configAPI').languages;
-
+    
+    if (lang == null) lang = langsAccepted[0];
+    
     const definedError = errorMessages.hasOwnProperty(error);
 
     if (definedError) {

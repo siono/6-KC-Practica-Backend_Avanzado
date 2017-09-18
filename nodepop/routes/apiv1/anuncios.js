@@ -1,14 +1,18 @@
 'use strict';
 
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const mongoose = require('mongoose');
-const Anuncio = mongoose.model('Anuncio');
-const listarTags = require('../../models/Tag');
+var mongoose = require('mongoose');
+var Anuncio = mongoose.model('Anuncio');
+var listarTags = require('../../models/Tag');
 
 let translateError = require('../../lib/translateError');
+let totalRecords;
 
+Anuncio.count({},function(err, count){
+    totalRecords = count;
+});
 
 // GET /
 router.get('/', (req, res, next) => {
@@ -24,6 +28,7 @@ router.get('/', (req, res, next) => {
     let lang = req.query.lang;
     if (!lang) lang = 'en';
 
+    
     const filters = {};
 
     console.log(filters);
@@ -68,8 +73,8 @@ router.get('/', (req, res, next) => {
 
   // recuperar una lista de Anuncios
   Anuncio.lista(filters, skip, limit).then( lista => {
-    res.json({ success: true, rows: lista });
-  }).catch( err => {
+    res.json({ success: true, rows: lista, totalRecords: totalRecords });
+  }).catch( function(){
     return res.json({success:false, error: translateError('ERROR_FETCH',lang)});
   });
 

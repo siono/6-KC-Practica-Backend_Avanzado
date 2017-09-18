@@ -1,4 +1,6 @@
 
+            
+
             <div class="input-group" id="boot-search-box">
  
                 
@@ -24,16 +26,9 @@
                                     <label>Categoría:</label>
  
                                     <select name="tag" class="form-control">
-
-                                        <option value="mobile" selected>Mobile</option>
- 
-                                        <option value="motor" >Motor</option>
- 
-                                        <option value="lifestyle">LifeStyle</option>
- 
-                                        <option value="work">Work</option>
- 
- 
+                                          <% for (let key in tags){ %>
+                                          <option value="<%= tags[key] %>"><%= tags[key] %></option>
+                                          <% } %>
                                     </select>
  
                                   </div>

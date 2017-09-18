@@ -31,41 +31,30 @@ article {
 
 .text-info a {
     text-decoration: none;
-    color: #333;
+    color: #5f5f5f;
 }
 
 .text-info a:hover {
     text-decoration: none;
-    color: #333;
+    color: #5f5f5f;
 }
 
-#box::before,
-#box::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-color: transparent;
-    border-style: solid;
-}
-
-#box::after {
-    border-radius: 0em;
-    border-width: 2em;
-    border-right-color: #5cb85c;
-    border-top-color: #5cb85c;
-}
 
 .typeArticle {
     display: block;
-    width: 50px;
-    height: auto;
-    background-color: #5cb85c;
-    color: white;
+    color: #ecf0f1;
     float: right;
     text-align: center;
-    border-radius: 10%;
-    margin: 11px 0;
+    border-radius: 5%;
+    margin: 18px 0;
+}
+
+.venta{
+    background-color: #1abc9c;  
+}
+
+.busqueda{
+    background-color: #e74c3c;
 }
 
 .description p {
@@ -73,14 +62,19 @@ article {
 }
 
 .price {
-    display: block;
     text-align: center;
     font-size: 25px;
-    margin-top: 20px;
+    background-color: #ecf0f1;
+    margin-top: 18px;
 }
 
 .tag > span{
-    margin-right: 10px;
+    color: #5f5f5f;
+    margin-left: 5px;
+}
+
+.tag a{
+    margin-left: 5px;
 }
 
 .tag {
