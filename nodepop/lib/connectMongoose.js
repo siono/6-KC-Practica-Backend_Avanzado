@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const bbdd = require('../config/configBD').BBDD;
+const bbdd = require('../config/configAPI').BBDD;
 const conn = mongoose.connection;
 
 conn.on('error', err => {

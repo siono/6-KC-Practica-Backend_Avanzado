@@ -69,8 +69,6 @@ async.series([
             
         });   
         
-       
-        
     }
 
 

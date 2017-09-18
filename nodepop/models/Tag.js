@@ -1,6 +1,6 @@
 'use strict';
 
-const Tags = require('../config/configBD').tags;
+const Tags = require('../config/configAPI').tags;
 
 let listarTags = function(callback){
     callback(null,Tags);
