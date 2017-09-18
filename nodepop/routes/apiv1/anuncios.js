@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const Anuncio = mongoose.model('Anuncio');
 const listarTags = require('../../models/Tag');
 
+let translateError = require('../../lib/translateError');
+
 
 // GET /
 router.get('/', (req, res, next) => {
@@ -18,6 +20,9 @@ router.get('/', (req, res, next) => {
 
     const skip = parseInt(req.query.skip);
     const limit = parseInt(req.query.limit);
+
+    let lang = req.query.lang;
+    if (!lang) lang = 'en';
 
     const filters = {};
 
@@ -65,9 +70,7 @@ router.get('/', (req, res, next) => {
   Anuncio.lista(filters, skip, limit).then( lista => {
     res.json({ success: true, rows: lista });
   }).catch( err => {
-    console.log('Error', err);
-    next(err); // para que retorne la página de error
-    return;
+    return res.json({success:false, error: translateError('ERROR_FETCH',lang)});
   });
 
 
@@ -77,27 +80,30 @@ router.get('/', (req, res, next) => {
 // POST
 // Crear un anuncio
 router.post('/',(req, res, next) => {
-    console.log(req.body);
+
+    let lang = req.query.lang;
+    if (!lang) lang = 'en';
+
     //creamos un nuevo anuncio
     const anuncio = new Anuncio(req.body);
     
     //lo guardamos en la base de datos
     anuncio.save((err,anuncioGuardado) => {
         if (err){
-            console.log('Error', err);
-            next(err); //para que retorne la página de error
-            return;
+             return res.json({success:false, error: translateError('ERROR_SAVE_BBDD',lang)});
         } 
         res.json({sucess: true, result: anuncioGuardado});
     });
 });
 
 router.get('/tags', (req, res, next) => {
+    
+    let lang = req.query.lang;
+    if (!lang) lang = 'en';
+    
     listarTags(function(err, tags){
-        if (err){
-            console.log('Error', err);
-            next(err); //para que retorne la página de error
-            return;
+        if (!err){
+            return res.json({success:false, error: translateError('ERROR_FETCH',lang)});
         } 
         res.json({sucess: true, result: tags});
     }

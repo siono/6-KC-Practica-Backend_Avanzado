@@ -1,0 +1,14 @@
+{
+    "ERROR_FETCH":{
+        "es": "No se ha podido recuperar la información solicitada",
+        "en": "Error fetch information"
+    },
+    "CONNECTION_BBDD_ERROR":{
+        "es": "Error en la conexión de la base de datos",
+        "en": "Error to connect to the database"
+    },
+    "LANG_ERROR":{
+        "es": "Idioma no soportado",
+        "en": "Language not support"
+    }
+}
