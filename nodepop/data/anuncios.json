@@ -45,16 +45,56 @@
             "precio" : 500,
             "foto" : "moto.jpg",
             "tags" : [ 
-                "mobile , lifestyle"
+                "mobile", 
+                "lifestyle"
             ]
         },
         {
-            "nombre" : "Avion",
+            "nombre" : "Avión",
             "venta" : true,
             "precio" : 5000,
             "foto" : "avion.jpg",
             "tags" : [ 
                 "mobile", 
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "Portátil",
+            "venta" : false,
+            "precio" : 350,
+            "foto" : "portatil.jpg",
+            "tags" : [ 
+                "mobile", 
+                "work"
+            ]
+        },
+        {
+            "nombre" : "Traje",
+            "venta" : false,
+            "precio" : 25,
+            "foto" : "traje.jpg",
+            "tags" : [ 
+                "work", 
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "Play Station",
+            "venta" : false,
+            "precio" : 150,
+            "foto" : "play.jpg",
+            "tags" : [ 
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "Lámpara",
+            "venta" : false,
+            "precio" : 20,
+            "foto" : "lampara.jpg",
+            "tags" : [ 
+                "work", 
                 "lifestyle"
             ]
         }
