@@ -53,7 +53,7 @@ dato buscado).
 * [Filtros disponibles]
 	* nombre: Nombre de artículo, que empiece por el dato buscado en el parámetro nombre.
 	* precio: Rango de precio (precio min. y precio max.) separado por - .
-	* tag: Tag del articulo
+	* tags: Tag del articulo
 	* venta: tipo de anuncio (venta o búsqueda).
 * [Paginación]
 	* skip

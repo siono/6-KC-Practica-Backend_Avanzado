@@ -23,5 +23,7 @@ anuncioSchema.statics.lista = function( filter, skip, limit, callback) {
     return query.exec(callback); 
 };
 
+
+
 //creamos el modelo
 let Anuncio = mongoose.model('Anuncio', anuncioSchema);

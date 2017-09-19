@@ -1,23 +1,25 @@
 <div class="container">
     
-        <h1 class="page-header"> <%= title %> :</h1>
-        <section class="item-list clearfix">
-            
-            
-            
-            <% include item %>
-                  
+    <h1 class="page-header"> <%= title %> :</h1>
     
-            <div class="text-center alone">
-                
-                <% var totalPage= Math.ceil(totalRecords / limit);%>
+    <section class="item-list clearfix">
 
-                <ul class="pagination">
-                <% for (let i=1; i<=totalPage; i++){%>
-                    <li class="<% if(page==i){ %>disabled <%}%>" ><a href="/?page=<%=i%>&limit=<%=limit%>"><%=i%></a></li>
-                <%}%>
-                </ul>
-            </div>
-    
-        </section>
-    </div>
+    <!-- Incluimos los items -->        
+    <% include item %>
+                  
+    <!-- Paginacion : si el número de elmentos a mostrar es igual o menor al limite de elemnetos no se muestra paginación-->
+    <% if(totalPage > 1){ %>
+
+        <div class="text-center alone">
+        
+            <ul class="pagination">
+            <% for (let i=1; i<=totalPage; i++){%>
+                <li class="<% if(filters.page==i){ %>disabled<%}%>" ><a href="/<%=filters%>"><%=i%></a></li>
+            <%}%>
+                
+            </ul>
+
+        </div>
+    <%}%>
+    </section>
+</div>

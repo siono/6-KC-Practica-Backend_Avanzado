@@ -8,16 +8,14 @@ var Anuncio = mongoose.model('Anuncio');
 var listarTags = require('../../models/Tag');
 
 let translateError = require('../../lib/translateError');
-let totalRecords;
 
-Anuncio.count({},function(err, count){
-    totalRecords = count;
-});
+
+
 
 // GET /
 router.get('/', (req, res, next) => {
 
-    const tags = req.query.tag;
+    const tags = req.query.tags;
     const venta = req.query.venta;
     const precio = req.query.precio;
     const nombre = req.query.nombre;
@@ -25,13 +23,12 @@ router.get('/', (req, res, next) => {
     const skip = parseInt(req.query.skip);
     const limit = parseInt(req.query.limit);
 
+    let totalRecords; //numero de registros una vez aplicado los filtros sin paginación.
+
     let lang = req.query.lang;
     if (!lang) lang = 'en';
 
-    
-    const filters = {};
-
-    console.log(filters);
+    var filters = {};
 
     if (tags){
         filters.tags = tags;
@@ -70,6 +67,9 @@ router.get('/', (req, res, next) => {
         filters.nombre = new RegExp('^'+ req.query.nombre, 'i');
     }
 
+    Anuncio.find(filters).count({},function(err, count){
+        totalRecords = count;
+    });
 
   // recuperar una lista de Anuncios
   Anuncio.lista(filters, skip, limit).then( lista => {
