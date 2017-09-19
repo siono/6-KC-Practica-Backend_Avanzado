@@ -10,7 +10,7 @@ let translateError = require('../lib/translateError');
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   var page = (!req.query.page) ? 1 : parseInt(req.query.page);
   var limit = (!req.query.limit) ? 6 : parseInt(req.query.limit); //Definimos por defecto el limite de elementos a mostrar, ya que no es obligatorio pasarlo en la busqueda
   var skip = page > 0 ? ((page - 1) * limit) : 0;
