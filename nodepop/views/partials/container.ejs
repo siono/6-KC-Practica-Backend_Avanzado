@@ -14,7 +14,7 @@
         
             <ul class="pagination">
             <% for (let i=1; i<=totalPage; i++){%>
-                <li class="<% if(filters.page==i){ %>disabled<%}%>" ><a href="/<%=filters%>"><%=i%></a></li>
+                <li class="<% if(filters.page==i){ %>disabled<%}%>" ><a href="/?page=<%=i%><%if(filters!=""){%>&<%=filters%><%}%>"><%=i%></a></li>
             <%}%>
                 
             </ul>

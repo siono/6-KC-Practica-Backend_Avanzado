@@ -15,8 +15,8 @@ router.get('/', function(req, res, next) {
     var skip = page > 0 ? ((page - 1) * limit) : 0;
     
     var filters = '';
-    filters+= '?skip='+skip;
-    filters+= '&limit='+limit;
+    //filters+= 'skip='+skip;
+    //filters+= '&limit='+limit;
     if (req.query.tags) filters += '&tags='+req.query.tags;
     if (req.query.venta) filters += '&venta='+req.query.venta;
     if (req.query.nombre) filters += '&nombre='+req.query.nombre;
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
     
 
-    let url = 'http://localhost:3000/apiv1/anuncios'+filters;
+    let url = 'http://localhost:3000/apiv1/anuncios?skip='+skip+'&limit='+limit+'&'+filters;
 
     request(url, function(err, resp, body) {
       
