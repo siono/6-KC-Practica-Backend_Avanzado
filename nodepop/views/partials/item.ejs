@@ -12,7 +12,7 @@
                 <img class="thumb" src="images/articles/<%=anuncios[key].foto%>" >
             </picture>
             <div class="text-info">
-                <a href="/apiv1/anuncios?venta=<%= anuncios[key].venta %>">
+                <a href="/?venta=<%= anuncios[key].venta %>">
                 <div class="typeArticle">
                     <%= tipoAnuncio.toUpperCase() %>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="tag">
                         <span class="glyphicon glyphicon-tags"></span>
                         <% for (let key2 in anuncios[key].tags){ %>
-                        <a href="/apiv1/anuncios?tag=<%= anuncios[key].tags[key2] %>"> <%= anuncios[key].tags[key2] %> </a>
+                        <a href="/?tags=<%= anuncios[key].tags[key2] %>"> <%= anuncios[key].tags[key2] %> </a>
                         <%}%>
                     </div>
             </div>

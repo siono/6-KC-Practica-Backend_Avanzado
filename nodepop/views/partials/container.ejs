@@ -6,7 +6,7 @@
 
     <!-- Incluimos los items -->        
     <% include item %>
-                  
+        
     <!-- Paginacion : si el número de elmentos a mostrar es igual o menor al limite de elemnetos no se muestra paginación-->
     <% if(totalPage > 1){ %>
 
@@ -14,7 +14,7 @@
         
             <ul class="pagination">
             <% for (let i=1; i<=totalPage; i++){%>
-                <li class="<% if(filters.page==i){ %>disabled<%}%>" ><a href="/?page=<%=i%><%if(filters!=""){%>&<%=filters%><%}%>vav"><%=i%></a></li>
+                <li class="<% if(page==i){ %>disabled<%}%>" ><a href="/?page=<%=i%><%if(filters!=""){%><%=filters%><%}%>"><%=i%></a></li>
             <%}%>
                 
             </ul>

@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
         
         var totalPage = Math.ceil(body.totalRecords/limit);
       
-        res.render('index', { title: 'Últimos anuncios', tags: tags, anuncios: body.rows, totalPage: totalPage, filters: filters });
+        res.render('index', { title: 'Últimos anuncios', tags: tags, anuncios: body.rows, totalPage: totalPage, page:page, filters: filters });
      
       }else{
         
