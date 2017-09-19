@@ -23,9 +23,10 @@
                                   </div>
                                   <div class="form-group">
  
-                                    <label>Categoría:</label>
+                                  
  
                                     <select name="tag" class="form-control">
+                                          <option disabled selected value>Selecciona una categoria</option>
                                           <% for (let key in tags){ %>
                                           <option value="<%= tags[key] %>"><%= tags[key] %></option>
                                           <% } %>
@@ -56,14 +57,15 @@
                                     <label>Precio:</label>
                                     
                                     <select name="precio" class="form-control">
-                                   
-                                         <option value="10-50​" selected>10-50 €</option>
+                                        <option disabled selected value>Selecciona un rango de precio</option>
+                                         
+                                         <option value='10-50'>10-50 €</option>
                                     
-                                         <option value="10-" >Mayor 10 €</option>
+                                         <option value='10-'>Mayor 10 €</option>
 
-                                         <option value="-50" >Menor 50 €</option>
+                                         <option value='-50'>Menor 50 €</option>
 
-                                         <option value="50" >50 €</option>
+                                         <option value='50'>50 €</option>
                                     
                                     
                                     </select>

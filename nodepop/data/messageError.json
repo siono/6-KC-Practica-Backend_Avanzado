@@ -10,5 +10,10 @@
     "LANG_ERROR":{
         "es": "Idioma no soportado",
         "en": "Language not support"
+    },
+    "ARTICLE_NOT_FOUND":{
+        "es": "No se han encontrado articulos con esos parametros de búsqueda",
+        "en": "Not found any articles with these search parameters"
     }
+
 }
