@@ -1,3 +1,14 @@
 .navbar-brand img{
     width: 85px;
 }
+
+span.flag-icon {
+    width: 25px;
+    height: 35px;
+    margin-top: 7px;
+    
+}
+
+.nav>li>span {
+    margin-right: 10px;
+}
