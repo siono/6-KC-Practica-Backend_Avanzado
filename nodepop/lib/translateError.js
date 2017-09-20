@@ -18,11 +18,11 @@ let translateError = function (error, lang) {
             
             return errorMessages[error][lang];
         
-        }else return errorMessages.LANG_ERROR[langsAccepted[0]];
+        }else return errorMessages["LANG_ERROR"][langsAccepted[0]];
 
     }
 
-    else return 'Undefined Error';
+    else return errorMessages["UNDEFINED_ERROR"][lang];
 };
 
 module.exports = translateError;
