@@ -3,10 +3,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-/* a {
-  color: #00B7FF;
-} */
 
 .alone{
   clear: both;
+}
+
+.pagination>.active>a{
+  z-index: 0 !important;
 }
