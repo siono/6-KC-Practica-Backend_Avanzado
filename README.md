@@ -11,7 +11,7 @@
 
 	$ bin/mongod --dbpath ./data/db --directoryperdb
 
-### Arrancar la base de datos
+### Script de carga de ejemplos para la Base de datos.
 
 	$ npm run installBD
       
@@ -62,33 +62,51 @@ dato buscado).
 * [URL_ejemplo - http://localhost:3000/apiv1/anuncios?precio=50-&tag=mobile&venta=true&skip=1&limit=2
 
 * [Salida]:
+    * success: (true/false): Nos devuelve si la consulta al api ha tenido éxito.
+    * rows: articulos recuperados
+    * totalRecords: número total de elementos encontrados sin limite de paginación.
 ```sh
 {
-    "success": true,
-    "rows": [
-        {
-            "_id": "59be5438ab64180be87744aa",
-            "nombre": "Coche",
-            "venta": true,
-            "precio": 400,
-            "foto": "coche.jpg",
-            "__v": 0,
-            "tags": [
-                "mobile"
-            ]
-        },
-        {
-            "_id": "59be55cfab64180be87744ac",
-            "nombre": "Avion",
-            "venta": true,
-            "precio": 5000,
-            "foto": "avion.jpg",
-            "__v": 0,
-            "tags": [
-                "mobile",
-                "lifestyle"
-            ]
-        }
+success: true,
+rows: [
+    {
+    _id: "59c25e2b28cf161742bc807e",
+    nombre: "Coche",
+    venta: true,
+    precio: 400,
+    foto: "coche.jpg",
+    __v: 0,
+    tags: [
+        "mobile"
     ]
+    },
+    {
+    _id: "59c25e2b28cf161742bc807f",
+    nombre: "Moto",
+    venta: true,
+    precio: 500,
+    foto: "moto.jpg",
+    __v: 0,
+    tags: [
+    "mobile",
+    "lifestyle"
+    ]
+    }
+    ],
+totalRecords: 5
 }
 ```
+#### Crear Anuncios 
+
+* [Objetivo] - Crear anuncios en la BBDD.
+* [Metodo] - POST
+* [URL] - 
+* [Salida]-
+
+```sh
+
+```
+
+#### Errores
+
+Los errores en el API, son mostrados por defecto en inglés (EN), se podrá cambiar a Español pasando las consultas con el parámetro lang=es.  
