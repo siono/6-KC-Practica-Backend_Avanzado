@@ -26,6 +26,7 @@ router.get('/', (req, res, next) => {
     let totalRecords; //numero de registros una vez aplicado los filtros sin paginación.
 
     let lang = req.query.lang;
+    
     if (!lang) lang = 'en';
 
     var filters = {};

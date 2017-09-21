@@ -8,11 +8,12 @@ let request = require('request');
 let tags = require('../config/configAPI').tags;
 let translateError = require('../lib/translateError');
 
+const defaultLimitArt = 6; //Definimos por defecto el limite de elementos a mostrar.
 
 /* GET home page. */
 router.get('/', function (req, res) {
   var page = (!req.query.page) ? 1 : parseInt(req.query.page);
-  var limit = (!req.query.limit) ? 6 : parseInt(req.query.limit); //Definimos por defecto el limite de elementos a mostrar, ya que no es obligatorio pasarlo en la busqueda
+  var limit = (!req.query.limit) ? defaultLimitArt : parseInt(req.query.limit); 
   var skip = page > 0 ? ((page - 1) * limit) : 0;
 
   var filters = '';
@@ -22,9 +23,12 @@ router.get('/', function (req, res) {
   if (req.query.nombre) filters += '&nombre=' + req.query.nombre;
   if (req.query.precio) filters += '&precio=' + req.query.precio;
 
+  var lang = req.cookies.lang;
+
   let url = 'http://localhost:3000/apiv1/anuncios?skip=' + skip + '&limit=' + limit + '&' + filters;
 
   request(url, function (err, resp, body) {
+
 
     body = JSON.parse(body);
 
@@ -48,7 +52,7 @@ router.get('/', function (req, res) {
         res.render('error', {
           title: 'Error',
           tags: tags,
-          error: translateError('ARTICLE_NOT_FOUND')
+          error: translateError('ARTICLE_NOT_FOUND', lang)
         });
 
       }
