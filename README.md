@@ -120,10 +120,3 @@ success: false,
 error: "No se ha podido recuperar la información solicitada"
 }
 ```
-
-### EJEMPLO FRONT CON LA UTILIZACIÓN DE LA API.
-
-* [URL]: http://localhost:3000/
-
-### PAGINACIÓN
-Si no se pasan como parametro la variable limit los resultados mostrados aparecen paginados por defecto por 6 articulos por página. Esta variable se puede modificar cambiando 'defaultLimitArt'.
