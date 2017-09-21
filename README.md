@@ -21,7 +21,7 @@
       
 
 
-###OPERACIONES API
+### OPERACIONES API
 
 A continuación detallamos las operaciones que están disponibles en la API.
 
@@ -121,6 +121,4 @@ error: "No se ha podido recuperar la información solicitada"
 }
 ```
 
-### EJEMPLO FRONT utilizando el API 
-
-* [URL_Ejemplo]: http://localhost:3000/
+### EJEMPLO FRONT utilizando el API : http://localhost:3000/
