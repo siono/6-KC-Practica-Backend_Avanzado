@@ -11,3 +11,8 @@ body {
 .pagination>.active>a{
   z-index: 0 !important;
 }
+
+.error{
+  text-align: center;
+  margin-top: 80px;
+}
