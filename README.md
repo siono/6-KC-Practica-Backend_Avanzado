@@ -11,7 +11,7 @@
 
 	$ bin/mongod --dbpath ./data/db --directoryperdb
 
-### Script de carga de ejemplos para la Base de datos.
+### Iniciar la BBDD con ejemplos precargados.
 
 	$ npm run installBD
       
@@ -59,7 +59,7 @@ dato buscado).
 	* skip
 	* limit
 
-* [URL_ejemplo - http://localhost:3000/apiv1/anuncios?precio=50-&tag=mobile&venta=true&skip=1&limit=2
+* [URL_Ejemplo] - http://localhost:3000/apiv1/anuncios?precio=50-&tag=mobile&venta=true&skip=1&limit=2
 
 * [Salida]:
     * success: (true/false): Nos devuelve si la consulta al api ha tenido éxito.
@@ -100,13 +100,30 @@ totalRecords: 5
 
 * [Objetivo] - Crear anuncios en la BBDD.
 * [Metodo] - POST
-* [URL] - 
-* [Salida]-
+* [Parametros] - Parametros soportados para la creación de anuncios.
+    * nombre: Nombre del articulo.
+    * precio: Precio del articulo.
+    * venta: true/false
+    * tags: Etiqueta del anuncio. Puede ponerse una o varias de la lista de etiquetas disponibles.
+    * foto: nombre de la imagen con su extensión de la foto del articulo. Posteriormente deberá subirse al servidor a la ruta /public/images/articles
 
-```sh
-
-```
 
 #### Errores
 
-Los errores en el API, son mostrados por defecto en inglés (EN), se podrá cambiar a Español pasando las consultas con el parámetro lang=es.  
+Los errores en el API, son mostrados por defecto en inglés (EN), se podrá cambiar a Español pasando las consultas con el parámetro lang=es.
+
+[URL_Ejemplo] -http://localhost:3000/apiv1/anuncios?precio=a&lang=es
+
+```sh
+{
+success: false,
+error: "No se ha podido recuperar la información solicitada"
+}
+```
+
+### EJEMPLO FRONT CON LA UTILIZACIÓN DE LA API.
+
+* [URL]: http://localhost:3000/
+
+### PAGINACIÓN
+Si no se pasan como parametro la variable limit los resultados mostrados aparecen paginados por defecto por 6 articulos por página. Esta variable se puede modificar cambiando 'defaultLimitArt'.
