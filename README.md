@@ -21,11 +21,11 @@
       
 
 
-__***OPERACIONES API***__
+###OPERACIONES API
 
 A continuación detallamos las operaciones que están disponibles en la API.
 
-#### Listar Tags 
+#### 1.Listar Tags 
 
 * [Objetivo] - Lista de tags existentes
 * [Metodo] - GET
@@ -43,7 +43,7 @@ A continuación detallamos las operaciones que están disponibles en la API.
 	]
 }
 ```
-#### Listar Anuncios con filtros y paginados.
+#### 2.Listar Anuncios con filtros y paginados.
 
 * [Objetivo] - Lista de anuncios paginada. Con filtros por tag, tipo de anuncio (venta o búsqueda),
 rango de precio (precio min. y precio max.) y nombre de artículo (que empiece por el
@@ -96,7 +96,7 @@ rows: [
 totalRecords: 5
 }
 ```
-#### Crear Anuncios 
+#### 3.Crear Anuncios 
 
 * [Objetivo] - Crear anuncios en la BBDD.
 * [Metodo] - POST
@@ -120,7 +120,7 @@ success: false,
 error: "No se ha podido recuperar la información solicitada"
 }
 ```
-__***EJEMPLO FRONT utilizando el API ***__
+
+### EJEMPLO FRONT utilizando el API 
 
 * [URL_Ejemplo]: http://localhost:3000/
-
