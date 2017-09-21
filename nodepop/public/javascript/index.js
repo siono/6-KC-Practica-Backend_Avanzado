@@ -8,5 +8,3 @@ $(document).ready(function() {
         document.cookie = "lang=en";
     }); 
 });
-
-console.log("Cookies",document.cookie);
