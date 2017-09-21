@@ -120,7 +120,7 @@ success: false,
 error: "No se ha podido recuperar la información solicitada"
 }
 ```
-__***EJEMPLO FRONT utilizando el API***__
+__***EJEMPLO FRONT utilizando el API ***__
 
-[URL_Ejemplo]: http://localhost:3000/
+* [URL_Ejemplo]: http://localhost:3000/
 
