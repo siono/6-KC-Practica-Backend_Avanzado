@@ -13,5 +13,7 @@ conn.once('open', () => {
     console.log('Conectado a MongoDB');
 });
 
-mongoose.connect(bbdd);
+mongoose.connect(bbdd,{
+    useMongoClient: true //para que no salga el DeprecationWarning
+});
 
