@@ -6,6 +6,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const i18n = require('./lib/i18nConfigure')();
 
 var app = express();
 
@@ -27,6 +28,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(i18n.init);
 
 app.use('/', require('./routes/index'));
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));

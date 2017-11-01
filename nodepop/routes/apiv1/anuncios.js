@@ -7,11 +7,6 @@ var mongoose = require('mongoose');
 var Anuncio = mongoose.model('Anuncio');
 var listarTags = require('../../models/Tag');
 
-let translateError = require('../../lib/translateError');
-
-
-
-
 // GET /
 router.get('/', (req, res, next) => {
 
@@ -24,10 +19,6 @@ router.get('/', (req, res, next) => {
     const limit = parseInt(req.query.limit);
 
     let totalRecords; //numero de registros una vez aplicado los filtros sin paginación.
-
-    let lang = req.query.lang;
-    
-    if (!lang) lang = 'en';
 
     var filters = {};
 
@@ -76,7 +67,7 @@ router.get('/', (req, res, next) => {
   Anuncio.lista(filters, skip, limit).then( lista => {
     res.json({ success: true, rows: lista, totalRecords: totalRecords });
   }).catch( function(){
-    return res.json({success:false, error: translateError('ERROR_FETCH',lang)});
+    return res.json({success:false, error: __('ERROR_FETCH')});
   });
 
 
@@ -87,16 +78,13 @@ router.get('/', (req, res, next) => {
 // Crear un anuncio
 router.post('/',(req, res, next) => {
 
-    let lang = req.query.lang;
-    if (!lang) lang = 'en';
-
     //creamos un nuevo anuncio
     const anuncio = new Anuncio(req.body);
     
     //lo guardamos en la base de datos
     anuncio.save((err,anuncioGuardado) => {
         if (err){
-             return res.json({success:false, error: translateError('ERROR_SAVE_BBDD',lang)});
+             return res.json({success:false, error: __('ERROR_SAVE_BBDD')});
         } 
         res.json({sucess: true, result: anuncioGuardado});
     });
@@ -104,12 +92,9 @@ router.post('/',(req, res, next) => {
 
 router.get('/tags', (req, res, next) => {
     
-    let lang = req.query.lang;
-    if (!lang) lang = 'en';
-    
     listarTags(function(err, tags){
         if (err){
-            return res.json({success:false, error: translateError('ERROR_FETCH',lang)});
+            return res.json({success:false, error: __('ERROR_FETCH')});
         } 
         res.json({sucess: true, result: tags});
     }

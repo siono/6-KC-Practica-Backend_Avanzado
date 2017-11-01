@@ -17,8 +17,11 @@
         
       <ul class="nav navbar-nav navbar-right">
         
-          <li id="flag_esp"><span class="flag-icon flag-icon-es"></span></li>
-          <li id="flag_gb"><span class="flag-icon flag-icon-gb"></span></li>
+          <!--<li id="flag_esp"><span class="flag-icon flag-icon-es"></span></li>
+          <li id="flag_gb"><span class="flag-icon flag-icon-gb"></span></li>-->
+          <% getLocales().forEach( lang => { %>
+            <li id="flag_<%=lang%>"><a href="/lang/<%= lang %>"><span class="flag-icon flag-icon-<%=lang%>"></span></a></li>
+          <% }) %>
     
         <%include search.ejs %>
         

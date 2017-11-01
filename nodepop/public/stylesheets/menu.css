@@ -9,6 +9,13 @@ span.flag-icon {
     
 }
 
-.nav>li>span {
+.navbar-nav>li>a{
+    padding-top: 0px !important; 
+    padding-bottom: 0px !important; 
+}
+
+
+.nav>li>a {
+    padding: 0px !important;
     margin-right: 10px;
 }

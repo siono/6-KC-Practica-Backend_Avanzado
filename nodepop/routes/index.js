@@ -4,14 +4,13 @@ let express = require('express');
 let router = express.Router();
 let request = require('request');
 
-
-let tags = require('../config/configAPI').tags;
-let translateError = require('../lib/translateError');
+let tags = require('../config/configAPI').tags
 
 const defaultLimitArt = 6; //Definimos por defecto el limite de elementos a mostrar.
 
 /* GET home page. */
 router.get('/', function (req, res) {
+
   var page = (!req.query.page) ? 1 : parseInt(req.query.page);
   var limit = (!req.query.limit) ? defaultLimitArt : parseInt(req.query.limit); 
   var skip = page > 0 ? ((page - 1) * limit) : 0;
@@ -23,7 +22,7 @@ router.get('/', function (req, res) {
   if (req.query.nombre) filters += '&nombre=' + req.query.nombre;
   if (req.query.precio) filters += '&precio=' + req.query.precio;
 
-  var lang = req.cookies.lang;
+  //var lang = req.cookies.lang;
 
   let url = 'http://localhost:3000/apiv1/anuncios?skip=' + skip + '&limit=' + limit + '&' + filters;
 
@@ -39,7 +38,6 @@ router.get('/', function (req, res) {
         var totalPage = Math.ceil(body.totalRecords / limit);
 
         res.render('index', {
-          title: 'Últimos anuncios',
           tags: tags,
           anuncios: body.rows,
           totalPage: totalPage,
@@ -52,7 +50,7 @@ router.get('/', function (req, res) {
         res.render('error', {
           title: 'Error',
           tags: tags,
-          error: translateError('ARTICLE_NOT_FOUND', lang)
+          error: __('ARTICLE_NOT_FOUND')
         });
 
       }
@@ -67,6 +65,13 @@ router.get('/', function (req, res) {
     }
 
   });
+});
+
+router.get('/lang/:locale', (req, res, next) => {
+  const locale = req.params.locale;
+  const referer = req.query.redir || req.headers.referer;
+  res.cookie('nodepop-lang', locale, { maxAge: 900000, httpOnly: true });
+  res.redirect(referer);
 });
 
 
