@@ -1,5 +1,7 @@
 {
-	"Last Ads": "Últimos anuncios",
+	"LAST_ADS": "Últimos anuncios",
 	"ARTICLE_NOT_FOUND": "Articulo no encontrado",
-	"OFFERS_LIMITED": "Corre! Estas ofertas están disponibles por tiempo limitado"
+	"OFFERS_LIMITED": "Corre! Estas ofertas están disponibles por tiempo limitado",
+	"ERROR_FETCH": "Error, No se ha podido recuperar los datos solicitados",
+	"ERROR_SAVE_BBDD": "Error al guadar en la BBDD"
 }
