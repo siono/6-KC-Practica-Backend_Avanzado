@@ -1,17 +1,34 @@
 const request = require('supertest');
-const express = require('express');
+
+// Inicializamos mockgoose
+const Mockgoose = require('mockgoose').Mockgoose;
+const mongoose = require('mongoose');
+const mockgoose = new Mockgoose(mongoose);
+const mongodbFixtures = require('./mongodb.fix');
 
 const app = require('../app');
-
-
 
 describe('Check API Nodepop',function(){
 
     let agent;
 
-    before(function(){
-        agent = request(app);
+    before(async function(){
+        await mockgoose.prepareStorage();
+        await mongoose.connect('mongodb://example.com/TestingDB', {
+          useMongoClient: true
+        });
+        // limpiamos las definiciones de modelos y esquemas de mongoose
+        mongoose.models = {};
+        mongoose.modelSchemas = {};
+        await mongodbFixtures.initBBDD();
+        
+        agent = request.agent(app);
+        
+        //Antes de ejecutar los test ejecutamos el login
+        loginUser(agent);
+        
     });
+
     
     it('Show ads, should return 200 and format json',function(done){
         agent
@@ -46,6 +63,20 @@ describe('Check API Nodepop',function(){
         .field('sucess',true)
         .expect(200,done)
     })
+
+    function loginUser(agent) {
+        return 
+            agent
+                .post('/apiv1/authenticate')
+                .send({"email": 'example@example.com', "password": "1234"})
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .end();
+    
+        
+    };
+
+
 });
 
 

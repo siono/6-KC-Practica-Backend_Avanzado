@@ -18,8 +18,12 @@ class LoginController {
     const email = req.body.email;
     const password = req.body.password;
 
+    console.log('Email',email);
+    console.log('Password',password);
+
     // hacemos un hash de la password
     const hashedPassword = Usuario.hashPassword(password);
+    console.log('Password Hasheada',hashedPassword);
 
     const user = await Usuario.findOne({ email: email, password: hashedPassword });
 
@@ -35,7 +39,7 @@ class LoginController {
     
     // creamos el token
     jwt.sign({ _id: user._id }, 'secret_key', {
-      expiresIn: '2d'
+      expiresIn: 600  //10min
     }, (err, token) => {
       console.log('Error',err);
       if (err) {

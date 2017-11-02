@@ -7,10 +7,10 @@ module.exports = function() { // devuelve un middleware que si no hay usuario re
   return function(req, res, next) {
     const token = req.body.token || req.query.token || req.get('x-access-token') || localStorage.getItem('token_auth');
 
-    console.log('Token en body',req.body.token);
+    /* console.log('Token en body',req.body.token);
     console.log('Token en query',req.body.token);
     console.log('Token en cabecera',req.get('x-access-token'));
-    console.log('Token en localstorage',localStorage.getItem('token_auth'));
+    console.log('Token en localstorage',localStorage.getItem('token_auth')); */
     
     if (!token) {
       const err = new Error('unauthorized');

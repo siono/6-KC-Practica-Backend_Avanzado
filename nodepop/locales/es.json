@@ -5,5 +5,6 @@
 	"ERROR_FETCH": "Error, No se ha podido recuperar los datos solicitados",
 	"ERROR_SAVE_BBDD": "Error al guadar en la BBDD",
 	"unauthorized": "Acceso denegado. Debe registrarse antes de acceder a las ofertas",
-	"err is not defined": "err is not defined"
+	"err is not defined": "err is not defined",
+	"token invalid": "token invalido"
 }
