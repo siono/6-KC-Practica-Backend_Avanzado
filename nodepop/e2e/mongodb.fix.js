@@ -33,7 +33,7 @@ module.exports.initBBDD = async function () {
     ])
     console.log('************* INICIALIZACIÓN TEST BBDD *********************')
     console.log(`Eliminados ${deletedUsers.result.n} usuarios.`);
-    console.log(`Insertados ${insertUsers} usuarios.`);
+    console.log(`Insertados ${insertUsers.length} usuarios.`);
     console.log(`Eliminados ${deletedAds.result.n} anuncios.`);
     console.log(`Insertados ${insertAds.length} anuncios.`);
 }

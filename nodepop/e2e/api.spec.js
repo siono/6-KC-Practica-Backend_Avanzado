@@ -24,11 +24,10 @@ describe('Check API Nodepop',function(){
         
         agent = request.agent(app);
         
-        //Antes de ejecutar los test ejecutamos el login
-        loginUser(agent);
         
     });
 
+    it('login', loginUser());
     
     it('Show ads, should return 200 and format json',function(done){
         agent
@@ -64,16 +63,19 @@ describe('Check API Nodepop',function(){
         .expect(200,done)
     })
 
-    function loginUser(agent) {
-        return 
+    function loginUser() {
+        return function(done) {
             agent
                 .post('/apiv1/authenticate')
                 .send({"email": 'example@example.com', "password": "1234"})
                 .expect('Content-Type', /json/)
-                .expect(200)
-                .end();
+                .end(onResponse);
     
-        
+            function onResponse(err, res) {
+               if (err) return done(err);
+               return done();
+            }
+        };
     };
 
 
