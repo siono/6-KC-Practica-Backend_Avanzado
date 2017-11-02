@@ -4,6 +4,7 @@ let express = require('express');
 let router = express.Router();
 let request = require('request');
 
+
 let tags = require('../config/configAPI').tags
 
 const defaultLimitArt = 6; //Definimos por defecto el limite de elementos a mostrar.
@@ -28,7 +29,6 @@ router.get('/', function (req, res) {
 
   request(url, function (err, resp, body) {
 
-
     body = JSON.parse(body);
 
     if (body.success) {
@@ -48,7 +48,6 @@ router.get('/', function (req, res) {
       } else {
 
         res.render('error', {
-          title: 'Error',
           tags: tags,
           error: __('ARTICLE_NOT_FOUND')
         });
@@ -58,9 +57,8 @@ router.get('/', function (req, res) {
     } else {
 
       res.render('error', {
-        title: 'Error',
         tags: tags,
-        error: resp.error
+        error: __(body.error)
       });
     }
 

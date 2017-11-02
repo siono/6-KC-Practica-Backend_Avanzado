@@ -27,3 +27,5 @@ anuncioSchema.statics.lista = function( filter, skip, limit, callback) {
 
 //creamos el modelo
 let Anuncio = mongoose.model('Anuncio', anuncioSchema);
+
+module.exports = Anuncio;

@@ -7,7 +7,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const i18n = require('./lib/i18nConfigure')();
-
+var loginController = require('./routes/loginController');
+const jwtAuth = require('./lib/jwtAuth');
 var app = express();
 
 
@@ -31,8 +32,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(i18n.init);
 
-app.use('/', require('./routes/index'));
-app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+app.use('/',require('./routes/index'));
+//middleware para generar el token JWT
+app.post('/apiv1/authenticate',  loginController.postLoginJWT);
+
+app.use('/apiv1/anuncios',jwtAuth(), require('./routes/apiv1/anuncios'));
+
+//,jwtAuth()
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

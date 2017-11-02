@@ -3,86 +3,52 @@
 let async = require('async');
 
 //Conexión Mongo
-require('../lib/connectMongoose');
-let mongoose = require('mongoose');
-let conn = mongoose.connection;
+const conn = require('../lib/connectMongoose');
 
 //Modelo
-require('../models/Anuncio');
+const Anuncio = require('../models/Anuncio');
+const Usuario = require('../models/Usuario');
 
 //Entidad
-const Anuncio = mongoose.model('Anuncio');
+//const Anuncio = mongoose.model('Anuncio');
 
 //Ficheros de anuncios
 let fs = require('fs');
 let ficheros = 'data/anuncios.json';
 
-async.series([
-    //borramos la tabla anuncios
-    function(callback){
-        Anuncio.remove({}, err =>{
-            console.log('Borrando tabla de Anuncios...');
-            if (err){
-                console.log('Error al borrar la tabla', err);
-                return callback(err);
-            }
-            //si se ha realizado correctamente
-            callback(null, ' 1 - Borrado de tablas realizado correctamente **********');
 
-        });
-     },
-    // cargamos el fichero json con anuncios
-    function(callback) {
-        
-        fs.readFile(ficheros, 'utf8', function(err, data) {
-            
-            if (err) {
-                return callback(err);
-            }
-            try {
-                data = JSON.parse(data);
-            } catch (e) {
-                return callback(e);
-            }
-
-            async.each(data.anuncios, function(anuncio, callback) {
-                
-                new Anuncio(anuncio).save((err,anuncioCreado)=>{
-                    if (err) {
-                        console.log('Error al crear el anuncio', err);
-                        return callback(err);
-                    }
-                    else{
-                        console.log('Anuncio '+anuncioCreado.nombre+' creado correctamente');
-                        callback();
-                    }   
-                    
-                    }); 
-                   
-            }, function(err){
-                if (err){
-                    return callback(err);
-                }
-                callback(null, ' 2 - Carga de anuncios realizada correctamente **********');
-            });
-            
-            
-        });   
-        
+conn.once('open', async function() {
+    // uso try/catch para cazar los errores de async/await
+    try {
+      
+      await initAds();
+      await initUsuarios();
+      // otros inits ...
+      conn.close();
+      
+    } catch(err) {
+      console.log('Hubo un error:', err);
+      process.exit(1);
     }
+  });
 
 
-],function(err, results) {
-    if (err) {
-        console.error('Error al instalar la BD: ', err);
-        return;
-    }
-    console.log(results);
-    conn.close();
-    console.log('--------------------------------------------');
-    console.log('Instalacion base de datos nodepop terminada.');
-    console.log('--------------------------------------------');
-});
+async function initAds(){
+    const deleted = await Anuncio.deleteMany();
+    console.log(`Eliminados ${deleted.result.n} anuncios.`);
+    const data = fs.readFileSync(ficheros,'utf8');
+    const insertedAds = await Anuncio.insertMany(JSON.parse(data).anuncios);
+    console.log(`Insertados ${insertedAds.length} anuncios.`); 
+}
 
-
-
+async function initUsuarios() {
+    const deleted = await Usuario.deleteMany();
+    console.log(`Eliminados ${deleted.result.n} usuarios.`);
+  
+    const inserted = await Usuario.insertMany([
+      { name: 'admin', 
+        email: 'user@example.com',
+        password: Usuario.hashPassword('1234') }
+    ]);
+    console.log(`Insertados ${inserted.length} usuarios.`);
+}
