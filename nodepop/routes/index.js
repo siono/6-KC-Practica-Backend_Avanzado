@@ -65,12 +65,4 @@ router.get('/', function (req, res) {
   });
 });
 
-router.get('/lang/:locale', (req, res, next) => {
-  const locale = req.params.locale;
-  const referer = req.query.redir || req.headers.referer;
-  res.cookie('nodepop-lang', locale, { maxAge: 900000, httpOnly: true });
-  res.redirect(referer);
-});
-
-
 module.exports = router;

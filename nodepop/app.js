@@ -33,6 +33,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(i18n.init);
 
+app.get('/lang/:locale', (req, res, next) => {
+  const locale = req.params.locale;
+  const referer = req.query.redir || req.headers.referer;
+  res.cookie('nodepop-lang', locale, { maxAge: 900000, httpOnly: true });
+  res.redirect(referer);
+});
+
 //middleware para generar el token JWT
 app.post('/apiv1/authenticate',  loginController.postLoginJWT);
 
