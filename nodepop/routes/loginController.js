@@ -7,11 +7,12 @@ var localStorage = require('localStorage');
 
 class LoginController {
 
-    index(req, res, next) {
-        res.locals.email = 'admin@example.com'; // para que la vista tenga el email
+    
+  index(req, res, next) {
+        res.locals.email = 'user@example.com'; // para que la vista tenga el email
         res.locals.error = '';
         res.render('login');
-    }
+  }
 
   // POST /api/authenticate
   async postLoginJWT(req, res, next) {
@@ -44,18 +45,14 @@ class LoginController {
       // respondemos con un JWT y seteo la variable con localStorage
       localStorage.setItem('token_auth',token);
       res.json({ok: true, token: token});
-      
     });
   }
 
   logout(req, res, next) {
-    delete req.session.authUser;
-    req.session.regenerate(function(err) {
-      if (err) {
-        return next(err);
-      }
-      res.redirect('/');
-    });
+    
+    localStorage.removeItem('token_auth');
+    res.redirect('/');
+    
   }
 }
 

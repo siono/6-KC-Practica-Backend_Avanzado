@@ -6,5 +6,6 @@
 	"ERROR_SAVE_BBDD": "Error al guadar en la BBDD",
 	"unauthorized": "Acceso denegado. Debe registrarse antes de acceder a las ofertas",
 	"err is not defined": "err is not defined",
-	"token invalid": "token invalido"
+	"token invalid": "token invalido",
+	"Please login to access application": "Necesitas Logearte para acceder a la aplicación",
 }

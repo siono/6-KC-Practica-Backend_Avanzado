@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 const i18n = require('./lib/i18nConfigure')();
 var loginController = require('./routes/loginController');
 const jwtAuth = require('./lib/jwtAuth');
+const tokenAuth = require('./lib/tokenAuth'); 
 var app = express();
 
 
@@ -32,13 +33,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(i18n.init);
 
-app.use('/',require('./routes/index'));
-
 //middleware para generar el token JWT
 app.post('/apiv1/authenticate',  loginController.postLoginJWT);
 
 //para usar la api debemos validarnos
 app.use('/apiv1/anuncios',jwtAuth(), require('./routes/apiv1/anuncios'));
+
+app.get( '/login',loginController.index);
+app.get( '/logout', loginController.logout);
+
+//con tokenAuth comprobamos que el usuario tiene el token de validación,sino lo devolvemos al login.
+app.get('/',tokenAuth(),require('./routes/index'));
+
+
 
 
 // catch 404 and forward to error handler

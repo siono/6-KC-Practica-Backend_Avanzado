@@ -6,5 +6,6 @@
 	"ERROR_SAVE_BBDD": "Error to save data in BBDD",
 	"unauthorized": "Access denied. You must register to access the offers",
 	"err is not defined": "err is not defined",
-	"token invalid": "token invalid"
+	"token invalid": "token invalid",
+	"Please login to access application": "Please login to access application"
 }
