@@ -33,7 +33,7 @@ anuncioSchema.statics.lista = async function( filter, skip, limit, callback) {
     result.forEach(r => {r.foto = r.foto ? path.join(ruta, r.foto) : null} );
 
     
-    return result; // si no, los devuelvo por la promesa del async (async está en la primera linea de esta función)
+    return result; 
     
     
 };
