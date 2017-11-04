@@ -31,9 +31,10 @@ router.get('/', function (req, res) {
 
     body = JSON.parse(body);
 
+    console.log('BODY',body)
     if (body.success) {
 
-      if (body.rows[0]) {
+      if (body.rows) {
 
         var totalPage = Math.ceil(body.totalRecords / limit);
 

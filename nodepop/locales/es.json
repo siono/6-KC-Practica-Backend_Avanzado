@@ -7,5 +7,7 @@
 	"unauthorized": "Acceso denegado. Debe registrarse antes de acceder a las ofertas",
 	"err is not defined": "err is not defined",
 	"token invalid": "token invalido",
-	"Please login to access application": "Necesitas Logearte para acceder a la aplicación"
+	"Please login to access application": "Necesitas Logearte para acceder a la aplicación",
+	"Error, The requested data could not be recovered": "Error, The requested data could not be recovered",
+	"Assignment to constant variable.": "Assignment to constant variable."
 }

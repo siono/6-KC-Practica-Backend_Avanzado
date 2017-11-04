@@ -25,6 +25,7 @@
     "mockgoose": "^7.3.3",
     "mongoose": "^4.11.11",
     "morgan": "~1.8.1",
+    "path": "^0.12.7",
     "request": "^2.81.0",
     "serve-favicon": "~2.4.2",
     "web-storage": "^1.0.0"

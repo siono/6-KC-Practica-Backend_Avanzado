@@ -1,6 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const configAnuncios = require('../local_config').anuncios;
+const path = require('path');
 
 //definimos el esquema.
 const anuncioSchema = mongoose.Schema({
@@ -11,16 +13,29 @@ const anuncioSchema = mongoose.Schema({
     tags: [String]
 });
 
+
+
 //creamos los indices
 anuncioSchema.index({ nombre : 1, venta: 1 });
 
 //Metodo estátilo lista
-anuncioSchema.statics.lista = function( filter, skip, limit, callback) {
+anuncioSchema.statics.lista = async function( filter, skip, limit, callback) {
     const query = Anuncio.find(filter);
     query.skip(skip);
     query.limit(limit);
   
-    return query.exec(callback); 
+    let result = {};
+
+    result = await query.exec();
+    
+    // poner ruta base a imagenes
+    const ruta = configAnuncios.imagesURLBasePath;
+    result.forEach(r => {r.foto = r.foto ? path.join(ruta, r.foto) : null} );
+
+    
+    return result; // si no, los devuelvo por la promesa del async (async está en la primera linea de esta función)
+    
+    
 };
 
 

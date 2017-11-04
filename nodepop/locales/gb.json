@@ -7,5 +7,7 @@
 	"unauthorized": "Access denied. You must register to access the offers",
 	"err is not defined": "err is not defined",
 	"token invalid": "token invalid",
-	"Please login to access application": "Please login to access application"
+	"Please login to access application": "Please login to access application",
+	"Error, The requested data could not be recovered": "Error, The requested data could not be recovered",
+	"Assignment to constant variable.": "Assignment to constant variable."
 }
