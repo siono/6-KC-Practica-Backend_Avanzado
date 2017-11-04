@@ -3,7 +3,7 @@
 
 ### Instalación
 
-	$ git clone https://github.com/siono/4-KC-Practica-NodeJS.git
+	$ git clone https://github.com/siono/6-KC-Practica-Backend_Avanzado.git
 	$ cd nodepop
 	$ npm install
 
@@ -19,11 +19,112 @@
 
 	$ nodemon
       
+---
 
+### INTERNACIONALIZACIÓN
+
+Se han traducido los mensajes proporcionados por el frontal (menos la API) con i18n. Se dispone de un selector de idioma(ESPAÑOL e INGLES.)
+
+---
+
+### TESTING
+
+Para realizar los test debemos ejecutar 
+
+$ npm run e2e
+
+Se implementan 4 test con resultado positivo y 1 con resultado negativo.
+
+```sh
+POST /apiv1/authenticate 200 23.841 ms - 194
+    ✓ login (46ms)
+GET /apiv1/anuncios/ 200 12.791 ms - 313
+    ✓ Show ads, should return 200 and format json
+GET /apiv1/anuncios?precio=50-&tag=mobile&venta=true&skip=1&limit=2 200 5.236 ms - 43
+    ✓ Search ads, should return 200 and format json
+.field() can't be used if .send() is used. Please use only .send() or only .field() & .attach()
+POST /apiv1/anuncios 200 7.072 ms - 77
+    ✓ Create ad, should return 200 and format json
+.field() can't be used if .send() is used. Please use only .send() or only .field() & .attach()
+    1) Create ad, show error if send a number
+
+
+  4 passing (486ms)
+  1 failing
+
+  1) Check API Nodepop
+       Create ad, show error if send a number:
+     TypeError: "string" must be a string, Buffer, or ArrayBuffer
+      at Function.byteLength (buffer.js:475:11)
+      at Test.Request._end (node_modules/superagent/lib/node/index.js:791:84)
+      at Test.Request.end (node_modules/superagent/lib/node/index.js:764:15)
+      at Test.end (node_modules/supertest/lib/test.js:125:7)
+      at Test.expect (node_modules/supertest/lib/test.js:87:37)
+      at Context.<anonymous> (e2e/api.spec.js:63:10)
+```
+---
 
 ### OPERACIONES API
 
 A continuación detallamos las operaciones que están disponibles en la API.
+
+
+Autenticacín JWT__
+
+Todas las operaciones a la API deben pasar por autenticación mediante JWT.
+
+* [Objetivos] - Autenticación JWT
+* [Método] - POST
+* [URL] - http://localhost:3000/apiv1/authenticate
+* [DATA] - Email y Contraseña del usuario a aunteticar.
+    * Ejemplo: ```{
+    "email": "user@example.com",
+    "password": "1234"
+  }```
+* [SALIDA]
+```sh
+{
+    "ok": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWZiNGVjYWQ4MmUyZDMzODcwN2Y4Y2YiLCJpYXQiOjE1MDk3ODA5MjgsImV4cCI6MTUwOTc4MTUyOH0.PZQlgFJ88t-MnZuns3HfMwMN2Gyw8nuw6GNXfQqd0BQ"
+}
+```
+
+Si la autenticación no es correcta devolverá:
+
+```sh
+{
+    "ok": false,
+    "error": "invalid credentials"
+}
+```
+
+
+### Las operaciones a continuación descritas deberán pasar el token de autenticación para tener el resultado esperado. 
+
+
+* Resultado sin token:
+
+    * Ej: http://localhost:3000/apiv1/anuncios
+
+```sh
+{
+"success": false,
+"error": "unauthorized"
+}
+```
+
+* Resultado con token caducado o erroneo:
+
+    * Ej: http://localhost:3000/apiv1/anuncios?token=1234
+
+```sh
+{
+"success": false,
+"error": "token invalid"
+}
+```
+
+__Operaciones a la API__
 
 #### 1.Listar Tags 
 
