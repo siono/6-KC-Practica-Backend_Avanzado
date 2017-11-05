@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./bin/www & node ./lib/uploadFile_service.js",
     "installBD": "node ./bin/install_bd",
     "e2e": "mocha **/*.spec.js --recursive --watch --timeout 10000"
   },
@@ -12,10 +12,12 @@
     "body-parser": "~1.17.1",
     "chai": "^4.1.2",
     "cookie-parser": "~1.4.3",
+    "cote": "^0.15.1",
     "cross-env": "^5.1.1",
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
+    "express-upload": "^0.1.0",
     "fs": "0.0.1-security",
     "hash.js": "^1.1.3",
     "jshint": "^2.9.5",

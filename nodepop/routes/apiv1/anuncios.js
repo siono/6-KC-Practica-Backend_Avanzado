@@ -6,6 +6,10 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Anuncio = mongoose.model('Anuncio');
 var listarTags = require('../../models/Tag');
+const upload = require('../../lib/uploadFile');
+const cote = require('cote');
+
+
 
 // GET /
 router.get('/', (req, res, next) => {
@@ -79,6 +83,19 @@ router.get('/', (req, res, next) => {
 router.post('/',(req, res, next) => {
 
     try{
+
+    if (req.body.foto){
+            
+        //tarea en background para subir la imagen al servidor
+        console.log("Subiendo la imagen", req.body.foto);
+
+        const requester = new cote.Requester({ name: 'upload image' });
+        requester.send({
+            type: 'upload',
+            image: req.body.foto
+        });
+    }
+
     //creamos un nuevo anuncio
     const anuncio = new Anuncio(req.body);
     
