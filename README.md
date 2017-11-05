@@ -63,6 +63,34 @@ POST /apiv1/anuncios 200 7.072 ms - 77
       at Context.<anonymous> (e2e/api.spec.js:63:10)
 ```
 ---
+### SUBIDA DE IMAGEN CON TAREA EN BACKGROUND
+
+
+- Se modifica la respuesta de la api para que muestre la ruta relativa de la imagen
+```sh
+{
+"_id": "59fb4ecad82e2d338707f8c5",
+"__v": 0,
+"nombre": "Bicicleta",
+"venta": true,
+"precio": 230.15,
+"foto": "/images/articles/bici.jpg",
+"tags": [
+"lifestyle",
+"motor"
+]
+}
+```
+- Mediante la librería COTE se crea el microservicio (```uploadFile_service```) encargado de subir la imagen cuando se crea un Anuncio. Este servicio se autoarranca al ejecutar ```npm run start```.
+
+- Utilizamos el módulo ````jimp ```` para manipular (genearar el thumbnails de 300x300) y subir la imagen al folder correcto.
+
+- Se ha generado un formulario para añadir nuevos anuncios.
+
+    ````http://localhost:3000/anuncio````
+
+
+---
 
 ### OPERACIONES API
 
