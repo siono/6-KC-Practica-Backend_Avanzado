@@ -9,5 +9,16 @@
 	"token invalid": "token invalido",
 	"Please login to access application": "Necesitas Logearte para acceder a la aplicación",
 	"Error, The requested data could not be recovered": "Error, The requested data could not be recovered",
-	"Assignment to constant variable.": "Assignment to constant variable."
+	"Assignment to constant variable.": "Assignment to constant variable.",
+	"Create Ad": "Crear Anuncio",
+	"Product": "Product",
+	"Price": "Price",
+	"Sell": "Sell",
+	"Image": "Image",
+	"Crear": "Crear",
+	"New": "New",
+	"Yes": "Yes",
+	"No": "No",
+	"Image Path": "Ruta de la imagen",
+	"New Ad": "Crear nuevo anuncio"
 }

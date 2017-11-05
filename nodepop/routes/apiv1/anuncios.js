@@ -6,7 +6,6 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Anuncio = mongoose.model('Anuncio');
 var listarTags = require('../../models/Tag');
-const upload = require('../../lib/uploadFile');
 const cote = require('cote');
 
 
@@ -94,6 +93,17 @@ router.post('/',(req, res, next) => {
             type: 'upload',
             image: req.body.foto
         });
+    
+
+        var filepath = req.body.foto;
+        //nos aseguramos de coger solamente el nombre del fichero no la ruta.
+        req.body.foto = filepath.replace(/^.*[\\\/]/, ''); 
+
+        console.log('Nombre de la foto',req.body.foto);
+
+    }else{
+        //ponemos imagen por defecto
+        req.body.foto = 'default.jpg'
     }
 
     //creamos un nuevo anuncio

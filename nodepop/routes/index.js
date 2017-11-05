@@ -25,31 +25,32 @@ router.get('/', function (req, res) {
 
   //var lang = req.cookies.lang;
 
-  let url = 'http://localhost:3000/apiv1/anuncios?skip=' + skip + '&limit=' + limit + '&' + filters;
+
+  let url = req.protocol+'://'+req.get('host')+'/apiv1/anuncios?skip=' + skip + '&limit=' + limit + '&' + filters;
 
   request(url, function (err, resp, body) {
 
     body = JSON.parse(body);
 
-    console.log('BODY',body)
     if (body.success) {
 
       if (body.rows) {
 
         var totalPage = Math.ceil(body.totalRecords / limit);
 
+        
         res.render('index', {
-          tags: tags,
+          //tags: tags,
           anuncios: body.rows,
           totalPage: totalPage,
           page: page,
           filters: filters
-        });
+        }); 
 
       } else {
 
         res.render('error', {
-          tags: tags,
+          //tags: tags,
           error: __('ARTICLE_NOT_FOUND')
         });
 
@@ -58,12 +59,15 @@ router.get('/', function (req, res) {
     } else {
 
       res.render('error', {
-        tags: tags,
+        //tags: tags,
         error: __(body.error)
       });
     }
 
   });
 });
+
+
+
 
 module.exports = router;

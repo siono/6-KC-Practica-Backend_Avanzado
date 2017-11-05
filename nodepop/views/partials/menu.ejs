@@ -16,14 +16,21 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/logout" type="button" class="btn btn-sm btn-logout">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a></li>
-          <!--<li id="flag_esp"><span class="flag-icon flag-icon-es"></span></li>
-          <li id="flag_gb"><span class="flag-icon flag-icon-gb"></span></li>-->
-          <% getLocales().forEach( lang => { %>
-            <li id="flag_<%=lang%>"><a href="/lang/<%= lang %>"><span class="flag-icon flag-icon-<%=lang%>"></span></a></li>
-          <% }) %>
+        
+        <li>
+          <a href="/anuncio" type="button" class="btn btn-sm btn-logout">
+            <span class="glyphicon glyphicon-plus"></span><%= __('New Ad')%>
+          </a>
+        </li>
+        <li>
+          <a href="/logout" type="button" class="btn btn-sm btn-logout">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+          </a>
+        </li>
+          
+        <% getLocales().forEach( lang => { %>
+        <li id="flag_<%=lang%>"><a href="/lang/<%= lang %>"><span class="flag-icon flag-icon-<%=lang%>"></span></a></li>
+        <% }) %>
     
         <%include search.ejs %>
         

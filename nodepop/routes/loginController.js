@@ -38,7 +38,6 @@ class LoginController {
     jwt.sign({ _id: user._id }, 'secret_key', {
       expiresIn: 600  //10min
     }, (err, token) => {
-      console.log('Error',err);
       if (err) {
         return next(err);
       }

@@ -1,0 +1,18 @@
+form#form_login,form#form_ad {
+    background-color: lightgray;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+div#title_login, div#title_ad {
+    text-transform: uppercase;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.error{
+    color: #d35400;
+    text-transform: uppercase;
+    font-size: 20px;
+}

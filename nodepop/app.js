@@ -10,6 +10,7 @@ const i18n = require('./lib/i18nConfigure')();
 var loginController = require('./routes/loginController');
 const jwtAuth = require('./lib/jwtAuth');
 const tokenAuth = require('./lib/tokenAuth'); 
+var request = require('request');
 var app = express();
 
 
@@ -49,8 +50,37 @@ app.use('/apiv1/anuncios',jwtAuth(), require('./routes/apiv1/anuncios'));
 app.get( '/login',loginController.index);
 app.get( '/logout', loginController.logout);
 
+app.get('/anuncio',tokenAuth(), function(req,res,next){
+  res.render('ad',{
+    error: ""
+  });
+});
+
+app.post('/anuncio',function(req,res,next){
+  console.log('Campos para crear un anuncio nuevo',req.body);
+
+  var options = { method: 'POST',
+  url: req.protocol+'://'+req.get('host')+'/apiv1/anuncios',
+  headers: 
+   {'content-type': 'application/x-www-form-urlencoded' },
+  form: req.body };
+
+  request(options, function (error, response, body) {
+    if (error){
+      res.render('ad',{
+        error: __(error.message)
+      });
+    
+    }else{
+        res.redirect('/');
+    }
+  });
+ 
+});
+
 //con tokenAuth comprobamos que el usuario tiene el token de validación,sino lo devolvemos al login.
 app.get('/',tokenAuth(),require('./routes/index'));
+
 
 
 

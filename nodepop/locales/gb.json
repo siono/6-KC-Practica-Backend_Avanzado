@@ -9,5 +9,16 @@
 	"token invalid": "token invalid",
 	"Please login to access application": "Please login to access application",
 	"Error, The requested data could not be recovered": "Error, The requested data could not be recovered",
-	"Assignment to constant variable.": "Assignment to constant variable."
+	"Assignment to constant variable.": "Assignment to constant variable.",
+	"Create Ad": "Create Ad",
+	"Product": "Product",
+	"Price": "Price",
+	"Sell": "Sell",
+	"Image": "Image",
+	"Crear": "Crear",
+	"New": "New",
+	"Yes": "Yes",
+	"No": "No",
+	"Image Path": "Image Path",
+	"New Ad": "New Ad"
 }
