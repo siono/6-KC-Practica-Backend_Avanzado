@@ -28,9 +28,9 @@
             window.location.href = "/";
           }
           else{
-            //error de autenticación
-            alert('Error de Autenticación');
-            window.location.href = "/login";
+            //Mostramos mensaje de error
+            $('.error').html('Invalid credentials');
+            
           }
         });
         
